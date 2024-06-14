@@ -50,3 +50,81 @@
 For any issues or support, please create an issue on the plugin's GitHub repository.
 
 Enjoy your new custom tabs!
+
+
+
+## Build Process for SCSS to CSS**
+
+    The build process involves compiling SCSS to CSS, autoprefixing, removing comments, and minifying the CSS.
+
+    **Required Dependencies:**
+
+    The `package.json` should include the following devDependencies:
+
+    ```json
+    {
+      "name": "custom-tabs-plugin",
+      "version": "1.0.0",
+      "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "description": "",
+      "devDependencies": {
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^9.0.0",
+        "gulp-clean-css": "^4.3.0",
+        "gulp-load-plugins": "^2.0.8",
+        "gulp-sass": "^5.1.0",
+        "gulp-strip-css-comments": "^3.0.0",
+        "sass": "^1.77.5"
+      }
+    }
+    ```
+
+    **Steps to Set Up the Build Process:**
+
+    - Ensure you have the necessary dependencies installed by running:
+      ```sh
+      npm install
+      ```
+
+    **Explanation of Gulpfile.js:**
+
+    - **`const { src, dest, watch, series } = require('gulp');`**: Imports necessary Gulp functions.
+    - **`const sass = require('gulp-sass')(require('sass'));`**: Sets up `gulp-sass` to use `sass`.
+    - **`async function compileSass() { ... }`**: Asynchronous function to compile SCSS to CSS:
+      - **`const autoprefixer = (await import('gulp-autoprefixer')).default;`**: Dynamically imports `gulp-autoprefixer`.
+      - **`const stripCssComments = (await import('gulp-strip-css-comments')).default;`**: Dynamically imports `gulp-strip-css-comments`.
+      - **`const cleanCSS = require('gulp-clean-css');`**: Requires `gulp-clean-css`.
+      - **`return src('assets/css/style.scss')...`**: Specifies the source file.
+      - **`.pipe(sass().on('error', sass.logError))`**: Compiles SCSS to CSS and logs errors.
+      - **`.pipe(autoprefixer({ ... }))`**: Adds vendor prefixes.
+      - **`.pipe(stripCssComments())`**: Removes CSS comments.
+      - **`.pipe(cleanCSS({ compatibility: 'ie11' }))`**: Minifies the CSS.
+      - **`.pipe(dest('assets/css'));`**: Outputs the processed CSS to the specified directory.
+    - **`function watchFiles() { ... }`**: Watches for changes in SCSS files and recompiles.
+    - **`exports.default = series(compileSass, watchFiles);`**: Defines the default Gulp task.
+
+    **Running the Build Process:**
+
+    - To compile the SCSS and watch for changes, run:
+      ```sh
+      gulp
+      ```
+
+    This command will compile `style.scss`, process it through autoprefixer, strip comments, minify the CSS, and save the output to `assets/css/style.css`.
+
+ **Enqueue the Compiled CSS in WordPress**
+
+    Ensure the compiled CSS is enqueued in your plugin's PHP file:
+
+    ```php
+    function enqueue_custom_tabs_plugin_styles() {
+        wp_enqueue_style('custom-tabs-style', plugin_dir_url(__FILE__) . 'assets/css/style.css', array(), '1.0.0');
+    }
+    add_action('wp_enqueue_scripts', 'enqueue_custom_tabs_plugin_styles');
+    ```
