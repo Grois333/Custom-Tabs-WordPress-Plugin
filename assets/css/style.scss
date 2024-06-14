@@ -19,6 +19,14 @@ body {
 .custom-tabs {
   max-width: initial !important;
 
+  .tab-wrapper {
+    display: none;
+  }
+  
+  .tab-wrapper.active {
+    display: block;
+  }  
+
   nav {
     align-self: center;
     display: flex;
@@ -32,6 +40,7 @@ body {
       color: var(--Gray-Border, #cfd6dd);
       font-weight: 700;
       text-decoration: none;
+      outline: 0;
 
       &.active {
         color: var(--Interactive-Default, #4c3eff);
