@@ -14,6 +14,20 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Add options page
+function custom_tabs_add_options_page() {
+    if (function_exists('acf_add_options_page')) {
+        acf_add_options_page(array(
+            'page_title'    => 'Options Page',
+            'menu_title'    => 'Options Page',
+            'menu_slug'     => 'options-page',
+            'capability'    => 'edit_posts',
+            'redirect'      => false
+        ));
+    }
+}
+add_action('acf/init', 'custom_tabs_add_options_page');
+
 // Enqueue styles and scripts
 function custom_tabs_plugin_enqueue_assets() {
     wp_enqueue_style('custom-tabs-style', plugin_dir_url(__FILE__) . 'custom-tabs-style.css');
@@ -22,6 +36,16 @@ add_action('wp_enqueue_scripts', 'custom_tabs_plugin_enqueue_assets');
 
 // Shortcode for tabbed content
 function custom_tabs_shortcode() {
+    if (!function_exists('get_field')) {
+        return 'ACF plugin is not active.';
+    }
+
+    $global_option_tabs = get_field('global_option_tabs', 'option');
+
+    if (empty($global_option_tabs)) {
+        return 'No tab data found.';
+    }
+
     ob_start();
     ?>
     <section class="container">
@@ -36,14 +60,14 @@ function custom_tabs_shortcode() {
             </nav>
             <section class="testimonial-section">
               <div class="testimonial-content">
-                <article class="testimonial">
+                <div class="testimonial">
                   <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2633ecc8187779d7d2f7e0501c024d52e72267560f300db5a0a55b640f2f11e7?apiKey=52e00693ef0347efa6daf6ffe0b9e649&" alt="Background Image" />
                   <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e8b0e27808e22b8569af2f370a81b27657b5fb0b9fd7b6affe734647935acf99?apiKey=52e00693ef0347efa6daf6ffe0b9e649&" class="testimonial-logo" alt="Company Logo" />
-                  <p class="quote">
+                  <div class="quote">
                     <span class="author-name">Riskified has enabled</span>
                     <span class="author-name"> safe, fast, and seamless payments </span>
                     throughout our collaboration. We’re excited to see what opportunities we can unlock in the future.
-                  </p>
+                  </div>
                   <div class="quote-author">
                     <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/471822f81967678cc25ba5ec544e009b0785cd1720d0189bee67ce307dc78739?apiKey=52e00693ef0347efa6daf6ffe0b9e649&" class="author-img" alt="Author Image"/>
                     <div class="author-details">
@@ -52,18 +76,18 @@ function custom_tabs_shortcode() {
                     </div>
                   </div>
                   <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/524b42ad5bea456b896d82890b2442057f4150862bd6f18eeac687f3ac37e218?apiKey=52e00693ef0347efa6daf6ffe0b9e649&" class="testimonial-logo" alt="Company Logo 2"/>
-                </article>
-                <aside class="cta-section">
+                </div>
+                <div class="cta-section">
                   <div class="cta-content">
                     <span class="percentage">50%</span>
-                    <p class="cta-text">Reduction in the cost of fraud</p>
+                    <div class="cta-text">Reduction in the cost of fraud</div>
                   </div>
                   <div class="cta-button" tabindex="0">Read Wayfair case study</div>
-                </aside>
+                </div>
               </div>
             </section>
             <section class="trusted-by">
-              <p class="trusted-title">TRUSTED BY</p>
+              <div class="trusted-title">TRUSTED BY</div>
               <div class="trusted-logos">
                 <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/15550cfc3ac6a4835db54e3712d589476ac774f8fa9594c3fbe63562ef76ab27?apiKey=52e00693ef0347efa6daf6ffe0b9e649&" alt="Trusted Company 1" class="trusted-logo" />
                 <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/828b7bc8a1201ceffff746e2582af39c414ca47331ea9dfa0cf87270ca7eb677?apiKey=52e00693ef0347efa6daf6ffe0b9e649&" alt="Trusted Company 2" class="trusted-logo" />
