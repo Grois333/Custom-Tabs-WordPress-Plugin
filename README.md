@@ -133,39 +133,39 @@ add_action('wp_enqueue_scripts', 'enqueue_custom_tabs_plugin_styles');
 
 ### Output on the Front:
 
-![Output]()
+![Output](https://raw.githubusercontent.com/Grois333/Custom-Tabs-WordPress-Plugin/master/assets/img/git-images/desktop.png)
 
 
 ### Responsive:
 
-![Responsive]()
+![Responsive](https://raw.githubusercontent.com/Grois333/Custom-Tabs-WordPress-Plugin/master/assets/img/git-images/mobile.png)
 
 
 ### ACF Plugin active required:
 
-![acf]()
+![acf](https://raw.githubusercontent.com/Grois333/Custom-Tabs-WordPress-Plugin/master/assets/img/git-images/acf%20plugin%20active%20required.png)
 
 
 ### Custom Tabs Plugin active:
 
-![Custom Tabs]()
+![Custom Tabs](https://raw.githubusercontent.com/Grois333/Custom-Tabs-WordPress-Plugin/master/assets/img/git-images/active%20custom%20tab%20plugin.png)
 
 
 ### Global Options register acf fields:
 
-![Global Options]()
+![Global Options](https://raw.githubusercontent.com/Grois333/Custom-Tabs-WordPress-Plugin/master/assets/img/git-images/global%20options%20register%20acf%20fields.png)
 
 
 ### Collapse Fields with Accordion:
 
-![Collapse]()
+![Collapse](https://raw.githubusercontent.com/Grois333/Custom-Tabs-WordPress-Plugin/master/assets/img/git-images/accordion.png)
 
 
 ### Expanded Fields with Content:
 
-![Expanded]()
+![Expanded](https://raw.githubusercontent.com/Grois333/Custom-Tabs-WordPress-Plugin/master/assets/img/git-images/acf%20content.png)
 
 
 ### Input Shortcode:
 
-![Shortcode]()
+![Shortcode](https://raw.githubusercontent.com/Grois333/Custom-Tabs-WordPress-Plugin/master/assets/img/git-images/shortcode.png)
