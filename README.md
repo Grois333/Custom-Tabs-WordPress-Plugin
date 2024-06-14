@@ -53,7 +53,7 @@ Enjoy your new custom tabs!
 
 
 
-## Build Process for SCSS to CSS**
+## Build Process for SCSS to CSS
 
     The build process involves compiling SCSS to CSS, autoprefixing, removing comments, and minifying the CSS.
 
