@@ -67,8 +67,6 @@ body {
         border-radius: 15px;
         overflow: hidden;
         position: relative;
-
-        /* min-height: 512px; */
         flex-grow: 1;
         padding: 40px;
         background-color: var(--Background-Light-Gray, #f3f5f7);
@@ -190,7 +188,6 @@ body {
         }
 
         .cta-text {
-          /* margin: 20px 0 9px; */
           margin-bottom: 30px;
           font-family: "proxima-nova", -apple-system, Roboto, Helvetica, sans-serif;
         }
@@ -225,8 +222,6 @@ body {
   .trusted-by {
     justify-content: center;
     display: flex;
-
-    /* justify-content: space-between; */
     margin-top: 40px;
     gap: 70px;
     padding: 25px 80px;
@@ -248,7 +243,6 @@ body {
       padding: 0 1px;
 
       img {
-        /* aspect-ratio: 5.56; */
         object-fit: auto;
         object-position: center;
         width: 120px;
