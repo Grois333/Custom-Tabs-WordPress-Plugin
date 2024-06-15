@@ -40,10 +40,16 @@
 
 6. **Configure Custom Fields**
     - Ensure the Advanced Custom Fields (ACF) plugin is installed and activated.
-    - Use ACF to create and configure the necessary custom fields for your tabs.
+    - To ensure the custom fields are available in the admin area:
+      1. Locate the `acf-json` folder included in this plugin.
+      2. Copy the `json` file of this folder.
+      3. Paste the copied `json` file into the `acf-json` folder that is located in the root of your current theme. If the folder does not exist, create it.
+      4. The ACF fields should now be available in the WordPress admin.
+
+    By following these steps, the custom fields for this plugin will be properly imported and available for use.
 
 7. **Usage**
-    - Navigate to the plugin settings page under `Settings > Custom Tabs` to manage your tabs content.
+    - Navigate to the Options page in the admin, in Global Options to manage your tabs content.
     - Use the provided shortcode `[custom_tabs]` to display tabs on any page or post.
 
 ### Support
