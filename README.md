@@ -40,13 +40,8 @@
 
 6. **Configure Custom Fields**
     - Ensure the Advanced Custom Fields (ACF) plugin is installed and activated.
-    - To ensure the custom fields are available in the admin area:
-      1. Locate the `acf-json` folder included in this plugin.
-      2. Copy the `json` file of this folder.
-      3. Paste the copied `json` file into the `acf-json` folder that is located in the root of your current theme. If the folder does not exist, create it.
-      4. The ACF fields should now be available in the WordPress admin.
-
-    By following these steps, the custom fields for this plugin will be properly imported and available for use.
+    - ACF will automatically load the field groups without any additional steps, to make it even easier for users and to avoid requiring them to manually place the `json` file in the `acf-json` folder of the theme. This folder is already included in this plugin, with the required `json` file. So the ACF fields are properly imported and available for use, in the WordPress admin (Global Options Settings Page).
+    - Additionally it also saves the ACF JSON file in the plugin directory, when writing and adding content in the admin settings page.
 
 7. **Usage**
     - Navigate to the Options page in the admin, in Global Options to manage your tabs content.

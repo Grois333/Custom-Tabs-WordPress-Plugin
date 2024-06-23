@@ -28,6 +28,27 @@ function custom_tabs_add_options_page() {
 }
 add_action('acf/init', 'custom_tabs_add_options_page');
 
+// Add this function to load the ACF JSON files from your plugin directory
+add_filter('acf/settings/load_json', 'my_plugin_acf_json_load_point');
+function my_plugin_acf_json_load_point( $paths ) {
+    // Remove original path (optional)
+    unset($paths[0]);
+    
+    // Append path to your plugin's JSON folder
+    $paths[] = plugin_dir_path(__FILE__) . 'acf-json';
+    
+    return $paths;
+}
+
+// Add this function to save the ACF JSON files to your plugin directory
+add_filter('acf/settings/save_json', 'my_plugin_acf_json_save_point');
+function my_plugin_acf_json_save_point( $path ) {
+    // Update path to save ACF JSON files in your plugin's directory
+    $path = plugin_dir_path(__FILE__) . 'acf-json';
+    
+    return $path;
+}
+
 // Enqueue styles and scripts
 function custom_tabs_plugin_enqueue_assets() {
     // Enqueue compiled CSS file
